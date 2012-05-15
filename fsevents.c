@@ -174,6 +174,9 @@ handle_event(lua_State *L, struct kfs_event *event, ssize_t mlen)
 		if (aflags & FSE_CONTAINS_DROPPED_EVENTS) {
 			logstring("Fsevents", "contains dropped events");
 		}*/
+        } else if (atype == FSE_MAX_EVENTS) {
+		printlogf(L, "Error", "ignoring mysterious event(%d) in fsevents.", atype);
+                return;
 	} else {
 		printlogf(L, "Error", "unknown event(%d) in fsevents.", 
 			atype);
